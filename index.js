@@ -1,59 +1,17 @@
-const WebSocket = require("ws");
-const server = new WebSocket.Server({ port: 4000 });
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-console.log("✅ WebSocket server is running on ws://localhost:4000");
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-// Store message history in memory
-const messageHistory = [];
-
-server.on("connection", (ws) => {
-  console.log("🔗 New client connected");
-
-  // Send the full history to the new client
-  messageHistory.forEach((msg) => {
-    ws.send(JSON.stringify(msg)); // Send as JSON object
-  });
-
-  ws.on("message", (message) => {
-    let msgText;
-
-    if (message instanceof Buffer) {
-      msgText = message.toString();
-    } else if (typeof message === "string") {
-      msgText = message;
-    } else {
-      return;
-    }
-
-    console.log("📩 Received:", msgText);
-
-    const time = new Date().toLocaleTimeString();
-    const newMsg = { text: msgText, sender: "You", time };
-
-    // Save to history
-    messageHistory.push(newMsg);
-
-    // Generate server reply
-    let replyText = "";
-
-    if (msgText.toLowerCase().includes("hello")) {
-      replyText = "Hi there! 👋 How can I assist you?";
-    } else if (msgText.toLowerCase().includes("help")) {
-      replyText = "Here are some things I can help with: chat, info, tips!";
-    } else {
-      replyText = "You said: " + msgText;
-    }
-
-    const serverReply = { text: replyText, sender: "Server", time };
-
-    // Save reply to history
-    messageHistory.push(serverReply);
-
-    // Send reply
-    ws.send(JSON.stringify(serverReply));
-  });
-
-  ws.on("close", () => {
-    console.log("❌ Client disconnected");
-  });
-});
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
