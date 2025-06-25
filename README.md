@@ -1,2 +1,13 @@
 # CODTECH_TASK-2
 REAL-TIME CHAT APPLICATION
+COMPANY: CODTECH IT SOLUTIONS
+NAME: KIRAN KUMAR M 
+INTERN ID: CITS0D861
+DOMAIN: FRONT END DEVELOPMENT
+DURATION: 4 WEEEKS
+MENTOR: NEELA SANTOSH KUMAR
+OUTPUT:
+![Screenshot (306)](https://github.com/user-attachments/assets/079f9ddf-1be7-49bd-a26c-0a1a9e11ad44)
+![Screenshot (307)](https://github.com/user-attachments/assets/09f83116-600d-44de-836c-4bff763ded0c)
+
+
